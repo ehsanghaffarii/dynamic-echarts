@@ -2,3 +2,4 @@
 .dev
 .devops
 node_modules
+*.zip

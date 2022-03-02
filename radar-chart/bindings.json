@@ -1,0 +1,44 @@
+[
+  {
+    "field": "name",
+    "label": "name",
+    "requred": true,
+    "hint": "name",
+    "default": "A"
+  },
+  {
+    "field": "values",
+    "label": "values",
+    "requred": true,
+    "hint": "values",
+    "default": "B-F"
+  },
+  {
+    "field": "filter",
+    "label": "filter",
+    "requred": false,
+    "hint": "",
+    "default": "G"
+  },
+  {
+    "field": "color",
+    "label": "color",
+    "requred": false,
+    "hint": "",
+    "default": "H"
+  },
+  {
+    "field": "facet",
+    "label": "facet",
+    "requred": false,
+    "hint": "",
+    "default": "I"
+  },
+  {
+    "field": "extra",
+    "label": "extra",
+    "requred": false,
+    "hint": "",
+    "default": "J"
+  }
+]
