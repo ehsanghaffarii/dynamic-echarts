@@ -23,8 +23,8 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
 <script src="https://d3js.org/d3-collection.v1.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script> -->
 <script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/bluepalette.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/dark.js"></script>
 
 <script>
   let state = "notLoaded";
@@ -128,7 +128,7 @@
         filterBy: "category_0",
       };
       config = {
-        theme: "bluepalette",
+        theme: "dark",
         chart: {
           background: "#ffffff",
         },
@@ -170,7 +170,7 @@
         ) {
           if (source?.length) {
             chartDom = document.getElementById("chart-wrapper");
-            chart = echarts.init(chartDom, config?.theme);
+            chart = echarts.init(chartDom, "dark");
             init_chart();
             isChartInitialized = true;
           }
