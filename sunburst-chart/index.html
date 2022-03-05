@@ -23,8 +23,9 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
 <script src="https://d3js.org/d3-collection.v1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/bluepalette.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/dark.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/chart-themes/cafe-cold.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/chart-themes/cafe-warm.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/chart-themes/cafe-shine.js"></script>
 
 <script>
   let state = "notLoaded";
@@ -40,16 +41,7 @@
   let chartDom;
   let chart;
   let isChartInitialized = false;
-  var theme;
-  colorList = [
-    "rgb(251, 118, 123)",
-    "rgba(0, 215, 239, 1)",
-    "rgba(255, 228, 52, 0.6)",
-    "#77EADF",
-    "#26C3BE",
-    "#64AFE9",
-    "#428BD4",
-  ];
+  var myChart;
   //
   let develop = true;
 
@@ -128,21 +120,37 @@
         filterBy: "category_0",
       };
       config = {
-        theme: "dark",
         chart: {
-          background: "#ffffff",
+          theme: "cafe-cold",
         },
         title: {
           show: true,
-          text: "Customized Radar Chart",
+          text: "Product categories chart",
           left: "8%",
           top: "3%",
           color: "#020202",
           fontSize: "18",
         },
         subtext: {
+          show: true,
           color: "#020202",
           text: "Source: World Bank",
+        },
+        grid: {
+          containLabel: true,
+        },
+        series: {
+          blur: {
+            label: {
+              rotate: "radial",
+            },
+          },
+          select: {
+            label: {
+              rotate: "radial",
+            },
+          },
+          colorBy: "series",
         },
       };
       chart_initial();
@@ -170,7 +178,8 @@
         ) {
           if (source?.length) {
             chartDom = document.getElementById("chart-wrapper");
-            chart = echarts.init(chartDom, "dark");
+            chart = echarts.init(chartDom, config.chart.theme);
+            myChart = chart;
             init_chart();
             isChartInitialized = true;
           }
@@ -181,6 +190,7 @@
       console.log("Error :", err);
     }
   };
+
   ///////////////////////////////////
   ///////////////////////////////////
   ///////////////////////////////////
@@ -190,7 +200,9 @@
   const updateOptionsStyles = () => {
     const options = {
       backgroundColor: config?.chart?.background,
-      chart: {},
+      chart: {
+        theme: config?.chart?.theme,
+      },
       title: {
         show: config?.title?.show,
         text: config?.title?.text,
@@ -205,21 +217,34 @@
           text: config?.subtext?.text,
         },
       },
+      grid: {
+        containLabel: true,
+      },
+      stateAnimation: {
+        duration: 600,
+      },
       series: {
         type: "sunburst",
-        selectedMode: "single",
-        emphasis: {
-          focus: "ancestor",
+        blur: {
+          label: {
+            rotate: config?.series?.blurLabelRotate,
+          },
         },
         select: {
           label: {
-            rotate: "tangential",
+            rotate: config?.series?.selectLabelRotate,
           },
         },
+        selectedMode: config?.series?.selectedMode,
+        emphasis: {
+          focus: config?.series?.emphasisFocus,
+        },
+        colorBy: config?.series?.colorBy,
       },
     };
     chart.setOption(options);
     console.log("options", options);
+    chart.on("click", function () {});
   };
 
   const init_chart = () => {
@@ -252,23 +277,9 @@
     const option = {
       series: {
         type: "sunburst",
-        blur: {
-          label: {
-            rotate: config?.series?.blurLabelRotate,
-          },
-        },
-        select: {
-          label: {
-            rotate: config?.series?.selectLabelRotate,
-          },
-        },
-        selectedMode: config?.series?.selectedMode,
         data: items,
         radius: [0, "95%"],
         sort: undefined,
-        emphasis: {
-          focus: config?.series?.emphasisFocus,
-        },
         levels: [
           {},
           {
@@ -291,7 +302,7 @@
           },
           {
             r0: "70%",
-            r: "73%",
+            r: "72%",
             label: {
               position: "outside",
               padding: 3,
@@ -304,13 +315,14 @@
         ],
       },
     };
+    option && chart.setOption(option);
     updateOptionsStyles();
-    chart.setOption(option);
     console.log(option);
   };
   // this method is executed when changing the data binding.
   const change_col = (cols) => {
-    init_chart();
+    chart_initial();
+    // init_chart();
   };
 
   // this method is executed when changing the config.
@@ -444,4 +456,6 @@
       if (callNow) func.apply(context, args);
     };
   }
+
+  chart;
 </script>

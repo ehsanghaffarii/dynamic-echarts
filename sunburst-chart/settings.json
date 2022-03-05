@@ -16,19 +16,23 @@
 			{
 				"components": [
 					{
-						"label": "ColorPalette",
-						"field": "chart.color",
-						"type": "select-color-palette",
-						"default": "#73AF48",
+						"label": "Chart Theme",
+						"field": "chart.theme",
+						"type": "select",
+						"default": "cafe-shine",
 						"width": "100%",
 						"options": [
 							{
-								"display": "first",
-								"value": "#1D6996,#EDAD08,#73AF48,#94346E,#38A6A5,#E17C05,#5F4690,#0F8554,#6F4070,#CC503E,#994E95"
+								"display": "cafe shine",
+								"value": "cafe-shine"
 							},
 							{
-								"display": "second",
-								"value": "#11A579,#CC503E,#3969AC,#F2B701,#7F3C8D,#80BA5A,#E68310,#CF1C90,#008695,#F97B72,#4B4B8F"
+								"display": "cafe warm",
+								"value": "cafe-warm"
+							},
+							{
+								"display": "cafe cold",
+								"value": "cafe-cold"
 							}
 						]
 					}
@@ -45,7 +49,7 @@
 						"label": "Title",
 						"field": "title.text",
 						"type": "input-text",
-						"default": "",
+						"default": "Product categories chart",
 						"width": "100%"
 					}
 				]
@@ -121,32 +125,68 @@
 						"type": "color-picker",
 						"default": "#333",
 						"width": "100%"
+					},
+					{
+						"label": "",
+						"field": "subtext.input-text.558785",
+						"type": "input-text",
+						"default": "",
+						"width": "50%"
 					}
 				]
 			}
 		]
 	},
 	{
-		"name": "Legend",
+		"name": "Series styles",
 		"rows": [
 			{
+				"name": "",
 				"components": [
 					{
-						"label": "show legend",
-						"field": "legend.show",
-						"type": "switch",
-						"default": "true",
-						"width": "100%"
+						"label": "Hover label rotate",
+						"field": "series.blurLabelRotate",
+						"type": "select",
+						"default": "radial",
+						"width": "50%",
+						"options": [
+							{
+								"display": "tangential",
+								"value": "tangential"
+							},
+							{
+								"display": "radial",
+								"value": "radial"
+							}
+						]
+					},
+					{
+						"label": "Select label rotate",
+						"field": "series.selectLabelRotate",
+						"type": "select",
+						"default": "tangential",
+						"width": "50%",
+						"options": [
+							{
+								"display": "tangential",
+								"value": "tangential"
+							},
+							{
+								"display": "radial",
+								"value": "radial"
+							}
+						]
 					}
 				]
 			},
 			{
+				"name": "",
 				"components": [
 					{
-						"label": "Selected Mode",
-						"field": "legend.selectedMode",
+						"label": "Selected mode",
+						"field": "series.selectedMode",
 						"type": "select",
-						"default": true,
+						"default": "single",
 						"width": "50%",
 						"options": [
 							{
@@ -155,11 +195,11 @@
 							},
 							{
 								"display": "multiple",
-								"value": " multiple"
+								"value": "multiple"
 							},
 							{
-								"display": "true",
-								"value": "true"
+								"display": "series",
+								"value": "series"
 							},
 							{
 								"display": "false",
@@ -168,213 +208,53 @@
 						]
 					},
 					{
-						"label": "top",
-						"field": "legend.top",
-						"type": "input-text",
-						"default": "3",
-						"width": "50%"
+						"label": "Emphasis focus",
+						"field": "series.emphasisFocus",
+						"type": "select",
+						"default": "ancestor",
+						"width": "50%",
+						"options": [
+							{
+								"display": "ancestor",
+								"value": "ancestor"
+							},
+							{
+								"display": "self",
+								"value": "self"
+							},
+							{
+								"display": "series",
+								"value": "series"
+							},
+							{
+								"display": "descendant",
+								"value": "descendant"
+							},
+							{
+								"display": "none",
+								"value": "none"
+							}
+						]
 					}
 				]
-			}
-		]
-	},
-	{
-		"name": "Item Styles",
-		"rows": [
+			},
 			{
+				"name": "",
 				"components": [
 					{
-						"label": "Line Style Type",
-						"field": "chart.lineStyle.type",
+						"label": "Colored series by",
+						"field": "series.colorBy",
 						"type": "select",
-						"default": "solid",
+						"default": "series",
 						"width": "100%",
 						"options": [
 							{
-								"display": "solid",
-								"value": "solid"
+								"display": "series",
+								"value": "series"
 							},
 							{
-								"display": "dashed",
-								"value": "dashed"
-							},
-							{
-								"display": "dotted",
-								"value": "dotted"
-							}
-						]
-					}
-				]
-			},
-			{
-				"components": [
-					{
-						"label": "Line width",
-						"field": "chart.lineStyle.width",
-						"type": "input-number",
-						"default": "1",
-						"width": "50%"
-					},
-					{
-						"label": "Line Opacity",
-						"field": "chart.lineStyle.opacity",
-						"type": "input-number",
-						"default": "0.5",
-						"width": "50%"
-					}
-				]
-			},
-			{
-				"components": [
-					{
-						"label": "Label",
-						"field": "chart.label.show",
-						"type": "switch",
-						"default": true,
-						"width": "100%"
-					}
-				]
-			},
-			{
-				"components": [
-					{
-						"label": "Label font size",
-						"field": "chart.label.fontSize",
-						"type": "input-number",
-						"default": "12",
-						"width": "50%"
-					},
-					{
-						"label": "Label position",
-						"field": "chart.label.position",
-						"type": "select",
-						"default": "top",
-						"width": "50%",
-						"options": [
-							{
-								"display": "top",
-								"value": "top"
-							},
-							{
-								"display": "left",
-								"value": "left"
-							},
-							{
-								"display": "right",
-								"value": "right"
-							},
-							{
-								"display": "bottom",
-								"value": "bottom"
-							},
-							{
-								"display": "inside",
-								"value": "inside"
-							},
-							{
-								"display": "insideLeft",
-								"value": "insideLeft"
-							},
-							{
-								"display": "insideRight",
-								"value": "insideRight"
-							},
-							{
-								"display": "insideTop",
-								"value": "insideTop"
-							},
-							{
-								"display": "insideBottom",
-								"value": "insideBottom"
-							},
-							{
-								"display": "insideTopLeft",
-								"value": "insideTopLeft"
-							},
-							{
-								"display": "insideBottomLeft",
-								"value": "insideBottomLeft"
-							},
-							{
-								"display": "insideTopRight",
-								"value": "insideTopRight"
-							},
-							{
-								"display": "insideBottomRight",
-								"value": "insideBottomRight"
-							}
-						]
-					}
-				]
-			}
-		]
-	},
-	{
-		"name": "Radar",
-		"rows": [
-			{
-				"components": [
-					{
-						"label": "Axis name color",
-						"field": "chart.axisName.color",
-						"type": "color-picker",
-						"default": "#fff",
-						"width": "50%"
-					},
-					{
-						"label": "Axis name background",
-						"field": "chart.axisName.backgroundColor",
-						"type": "color-picker",
-						"default": "#666666",
-						"width": "50%"
-					}
-				]
-			},
-			{
-				"components": [
-					{
-						"label": "background Shape",
-						"field": "chart.radar.shape",
-						"type": "select",
-						"default": "circle",
-						"width": "50%",
-						"options": [
-							{
-								"display": "circle",
-								"value": "circle"
-							},
-							{
-								"display": "polygon",
-								"value": "polygon"
-							}
-						]
-					},
-					{
-						"label": "Symbol",
-						"field": "chart.symbol",
-						"type": "select",
-						"default": "circle",
-						"width": "50%",
-						"options": [
-							{
-								"display": "circle",
-								"value": "circle"
-							},
-							{
-								"display": "rect",
-								"value": "rect"
-							},
-							{
-								"display": "roundRect",
-								"value": "roundRect"
-							},
-							{
-								"display": "triangle",
-								"value": "triangle"
-							},
-							{
-								"display": "diamond",
-								"value": "diamond"
+								"display": "item",
+								"value": "item"
 							}
 						]
 					}
