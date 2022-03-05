@@ -117,14 +117,14 @@
     //todo set col_rel and config
     if (develop) {
       col_rel = {
-        key: "category_0",
         level0: "category_0",
         level1: "category_1",
         level2: "category_2",
         level3: "category_3",
         level4: "category_4",
         level5: "category_5",
-        amount: "average_amount",
+        sizeBy: "average_amount",
+        filterBy: "category_0",
       };
       config = {
         chart: {
@@ -240,15 +240,7 @@
           item2.children.push({
             name: c.key,
             value: 1,
-            // children: [],
           });
-
-          // c.values.forEach((c) => {
-          //   item2.children.push({
-          //     name: c.key,
-          //     value: c.values.length,
-          //   });
-          // });
         });
       });
 
@@ -367,6 +359,12 @@
         })
         .key(function (d) {
           return d[col_rel?.level3];
+        })
+        .key(function (d) {
+          return d[col_rel?.level4];
+        })
+        .key(function (d) {
+          return d[col_rel?.level5];
         })
         .entries(_data.reverse())
         .sort(function (a, b) {
