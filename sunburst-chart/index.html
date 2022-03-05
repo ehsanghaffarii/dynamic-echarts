@@ -23,7 +23,8 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.min.js"></script>
 <script src="https://d3js.org/d3-collection.v1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/d3-array@3"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/ehsanghaffarii/dynamic-echarts/bluepalette.js"></script>
 
 <script>
   let state = "notLoaded";
@@ -127,6 +128,7 @@
         filterBy: "category_0",
       };
       config = {
+        theme: "bluepalette",
         chart: {
           background: "#ffffff",
         },
@@ -168,7 +170,7 @@
         ) {
           if (source?.length) {
             chartDom = document.getElementById("chart-wrapper");
-            chart = echarts.init(chartDom, "bluepalette");
+            chart = echarts.init(chartDom, config?.theme);
             init_chart();
             isChartInitialized = true;
           }
@@ -377,16 +379,6 @@
       return false;
     }
   };
-
-  // function level1Sum(args) {
-  //   var fullArray = [];
-  //   for (var i = 0; i < args.length; i++) {
-  //     for (var j = 0; j < args[i].length; j++) {
-  //       fullArray.push(args[i][j]);
-  //     }
-  //   }
-  //   return fullArray;
-  // }
 
   ////////////// helper
   const waitUntil = (callback) => {
