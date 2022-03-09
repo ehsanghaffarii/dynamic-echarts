@@ -1,0 +1,58 @@
+[
+  {
+    "field": "level0",
+    "label": "level0",
+    "requred": true,
+    "hint": "level0",
+    "default": "A"
+  },
+  {
+    "field": "level1",
+    "label": "level1",
+    "requred": false,
+    "hint": "",
+    "default": "B"
+  },
+  {
+    "field": "level2",
+    "label": "level2",
+    "requred": false,
+    "hint": "",
+    "default": "C"
+  },
+  {
+    "field": "level3",
+    "label": "level3",
+    "requred": false,
+    "hint": "",
+    "default": "D"
+  },
+  {
+    "field": "level4",
+    "label": "level4",
+    "requred": false,
+    "hint": "",
+    "default": "E"
+  },
+  {
+    "field": "level5",
+    "label": "level5",
+    "requred": false,
+    "hint": "",
+    "default": "F"
+  },
+  {
+    "field": "sizeBy",
+    "label": "Size By",
+    "requred": false,
+    "hint": "",
+    "default": "G"
+  },
+  {
+    "field": "filterBy",
+    "label": "Filter By",
+    "requred": false,
+    "hint": "",
+    "default": "H"
+  }
+]

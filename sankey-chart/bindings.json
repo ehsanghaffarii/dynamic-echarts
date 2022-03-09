@@ -1,0 +1,37 @@
+[
+  {
+    "field": "size",
+    "label": "size",
+    "requred": true,
+    "hint": "The values of size",
+    "default": "C"
+  },
+  {
+    "field": "xValue",
+    "label": "xValue",
+    "requred": true,
+    "hint": "The values of xAxis",
+    "default": "A"
+  },
+  {
+    "field": "yValue",
+    "label": "yValue",
+    "requred": true,
+    "hint": "The values of yAxis",
+    "default": "B"
+  },
+  {
+    "field": "name",
+    "label": "name",
+    "requred": false,
+    "hint": "The values of name",
+    "default": "D"
+  },
+  {
+    "field": "rowFilter",
+    "label": "rowFilter",
+    "requred": true,
+    "hint": "The label for filter",
+    "default": "E"
+  }
+]

@@ -1,0 +1,265 @@
+[
+	{
+		"name": "Chart",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "Chart Background",
+						"field": "chart.background",
+						"type": "color-picker",
+						"default": "#FFFFFF",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Chart Theme",
+						"field": "chart.theme",
+						"type": "select",
+						"default": "cafe-shine",
+						"width": "100%",
+						"options": [
+							{
+								"display": "cafe shine",
+								"value": "cafe-shine"
+							},
+							{
+								"display": "cafe warm",
+								"value": "cafe-warm"
+							},
+							{
+								"display": "cafe cold",
+								"value": "cafe-cold"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Title",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "Title",
+						"field": "title.text",
+						"type": "input-text",
+						"default": "Product categories chart",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Show ",
+						"field": "title.show",
+						"type": "switch",
+						"default": true,
+						"width": "50%"
+					},
+					{
+						"label": "Font Size",
+						"field": "title.fontSize",
+						"type": "input-number",
+						"default": "20",
+						"width": "50%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Margin Top",
+						"field": "title.top",
+						"type": "input-number",
+						"default": "3",
+						"width": "50%"
+					},
+					{
+						"label": "Margin Left",
+						"field": "title.left",
+						"type": "input-number",
+						"default": "30",
+						"width": "50%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Color",
+						"field": "title.color",
+						"type": "color-picker",
+						"default": "#333333",
+						"width": "100%"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Subtext",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "subtext",
+						"field": "subtext.text",
+						"type": "input-text",
+						"default": "",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "subtext color",
+						"field": "subtext.color",
+						"type": "color-picker",
+						"default": "#333",
+						"width": "100%"
+					},
+					{
+						"label": "",
+						"field": "subtext.input-text.558785",
+						"type": "input-text",
+						"default": "",
+						"width": "50%"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Series styles",
+		"rows": [
+			{
+				"name": "",
+				"components": [
+					{
+						"label": "Hover label rotate",
+						"field": "series.blurLabelRotate",
+						"type": "select",
+						"default": "radial",
+						"width": "50%",
+						"options": [
+							{
+								"display": "tangential",
+								"value": "tangential"
+							},
+							{
+								"display": "radial",
+								"value": "radial"
+							}
+						]
+					},
+					{
+						"label": "Select label rotate",
+						"field": "series.selectLabelRotate",
+						"type": "select",
+						"default": "tangential",
+						"width": "50%",
+						"options": [
+							{
+								"display": "tangential",
+								"value": "tangential"
+							},
+							{
+								"display": "radial",
+								"value": "radial"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "",
+				"components": [
+					{
+						"label": "Selected mode",
+						"field": "series.selectedMode",
+						"type": "select",
+						"default": "single",
+						"width": "50%",
+						"options": [
+							{
+								"display": "single",
+								"value": "single"
+							},
+							{
+								"display": "multiple",
+								"value": "multiple"
+							},
+							{
+								"display": "series",
+								"value": "series"
+							},
+							{
+								"display": "false",
+								"value": "false"
+							}
+						]
+					},
+					{
+						"label": "Emphasis focus",
+						"field": "series.emphasisFocus",
+						"type": "select",
+						"default": "ancestor",
+						"width": "50%",
+						"options": [
+							{
+								"display": "ancestor",
+								"value": "ancestor"
+							},
+							{
+								"display": "self",
+								"value": "self"
+							},
+							{
+								"display": "series",
+								"value": "series"
+							},
+							{
+								"display": "descendant",
+								"value": "descendant"
+							},
+							{
+								"display": "none",
+								"value": "none"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "",
+				"components": [
+					{
+						"label": "Colored series by",
+						"field": "series.colorBy",
+						"type": "select",
+						"default": "series",
+						"width": "100%",
+						"options": [
+							{
+								"display": "series",
+								"value": "series"
+							},
+							{
+								"display": "item",
+								"value": "item"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

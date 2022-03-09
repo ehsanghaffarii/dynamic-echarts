@@ -1,0 +1,294 @@
+<style>
+  body,
+  html {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .chart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div id="chart-wrapper" class="chart-wrapper"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.0/echarts.js"></script>
+<script src="./v1.0.0.js"></script>
+<script src="https://d3js.org/d3-collection.v1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-hierarchy@2.0.0/dist/d3-hierarchy.min.js"></script>
+
+<script>
+  let option;
+  let chart;
+  let chartDom;
+  let source;
+  let renderItem1;
+
+  window.onload = () => {
+    base_first_time({
+      _col_rel: {
+        name: "label",
+        value: "value",
+      },
+      _config: {},
+      _data: [
+        {
+          value: 20,
+          label: "first",
+        },
+        {
+          value: 10,
+          label: "second",
+        },
+      ],
+    });
+  };
+  function prepareData(rawData) {
+    const seriesData = [];
+    let maxDepth = 0;
+    function convert(source, basePath, depth) {
+      if (source == null) {
+        return;
+      }
+      if (maxDepth > 5) {
+        return;
+      }
+      maxDepth = Math.max(depth, maxDepth);
+      seriesData.push({
+        id: basePath,
+        value: source.$count,
+        depth: depth,
+        index: seriesData.length,
+      });
+      for (var key in source) {
+        if (source.hasOwnProperty(key) && !key.match(/^\$/)) {
+          var path = basePath + "." + key;
+          convert(source[key], path, depth + 1);
+        }
+      }
+    }
+    convert(rawData, "option", 0);
+    return {
+      seriesData: seriesData,
+      maxDepth: maxDepth,
+    };
+  }
+
+  const updateOptionsStyles = () => {
+    const options = {
+      backgroundColor: config?.chart?.background,
+      title: {
+        show: config?.title?.show,
+        text: config?.title?.text,
+        top: config?.title?.top,
+        left: config?.title?.left,
+        textStyle: {
+          fontSize: config?.title?.fontSize,
+          color: config?.title?.color,
+        },
+        subtextStyle: {
+          color: config?.subtext?.color,
+          text: config?.subtext?.text,
+        },
+      },
+      legend: {
+        show: config?.legend?.show,
+        top: config?.legend?.top,
+        selectedMode: config?.legend?.selectedMode,
+        data: [...data.cols],
+      },
+    };
+    chart.setOption(options);
+  };
+
+  function initChart(seriesData, maxDepth) {
+    var displayRoot = stratify();
+    function stratify() {
+      return d3
+        .stratify()
+        .parentId(function (d) {
+          return d.id.substring(0, d.id.lastIndexOf("."));
+        })(seriesData)
+        .sum(function (d) {
+          return d.value || 0;
+        })
+        .sort(function (a, b) {
+          return b.value - a.value;
+        });
+    }
+    function overallLayout(params, api) {
+      var context = params.context;
+      d3
+        .pack()
+        .size([api.getWidth() - 2, api.getHeight() - 2])
+        .padding(3)(displayRoot);
+      context.nodes = {};
+      displayRoot.descendants().forEach(function (node, index) {
+        context.nodes[node.id] = node;
+      });
+    }
+    function renderItem(params, api) {
+      var context = params.context;
+      // Only do that layout once in each time `setOption` called.
+      if (!context.layout) {
+        context.layout = true;
+        overallLayout(params, api);
+      }
+      var nodePath = api.value("id");
+      var node = context.nodes[nodePath];
+      if (!node) {
+        // Reder nothing.
+        return;
+      }
+      var isLeaf = !node.children || !node.children.length;
+      var focus = new Uint32Array(
+        node.descendants().map(function (node) {
+          return node.data.index;
+        })
+      );
+      var nodeName = isLeaf
+        ? nodePath
+            .slice(nodePath.lastIndexOf(".") + 1)
+            .split(/(?=[A-Z][^A-Z])/g)
+            .join("\n")
+        : "";
+      var z2 = api.value("depth") * 2;
+      return {
+        type: "circle",
+        focus: focus,
+        shape: {
+          cx: node.x,
+          cy: node.y,
+          r: node.r,
+        },
+        transition: ["shape"],
+        z2: z2,
+        textContent: {
+          type: "text",
+          style: {
+            // transition: isLeaf ? 'fontSize' : null,
+            text: nodeName,
+            fontFamily: "Arial",
+            width: node.r * 1.3,
+            overflow: "truncate",
+            fontSize: node.r / 3,
+          },
+          emphasis: {
+            style: {
+              overflow: null,
+              fontSize: Math.max(node.r / 3, 12),
+            },
+          },
+        },
+        textConfig: {
+          position: "inside",
+        },
+        style: {
+          fill: api.visual("color"),
+        },
+        emphasis: {
+          style: {
+            fontFamily: "Arial",
+            fontSize: 12,
+            shadowBlur: 20,
+            shadowOffsetX: 3,
+            shadowOffsetY: 5,
+            shadowColor: "rgba(0,0,0,0.3)",
+          },
+        },
+      };
+    }
+  }
+  const init_handler = () => {
+    chartDom = document.getElementById("chart-wrapper");
+    chart = echarts.init(chartDom);
+    console.log("init_handler", {
+      width,
+      height,
+      col_rel,
+      config,
+      old_config,
+      data,
+    });
+    option = {
+      backgroundColor: config?.chart?.background,
+      title: {
+        show: config?.title?.show,
+        text: config?.title?.text,
+        top: config?.title?.top,
+        left: config?.title?.left,
+        textStyle: {
+          fontSize: config?.title?.fontSize,
+          color: config?.title?.color,
+        },
+        subtextStyle: {
+          color: config?.subtext?.color,
+          text: config?.subtext?.text,
+        },
+      },
+      hoverLayerThreshold: Infinity,
+      dataset: {
+        source: data.rows,
+      },
+      series: [
+        {
+          type: "custom",
+          // renderItem: ,
+          progressive: 0,
+          coordinateSystem: "none",
+          encode: {
+            tooltip: "value",
+            itemName: "id",
+          },
+        },
+      ],
+    };
+
+    option && chart.setOption(option);
+    updateOptionsStyles();
+    console.log("init_handler", { option });
+  };
+
+  const change_config_handler = () => {
+    if (!chart) return;
+    updateOptionsStyles();
+  };
+
+  const transformData = async (newData) => {
+    console.log(prepareData(newData));
+    source = newData;
+    console.log("transformData", { newData });
+    const group = d3
+      .nest()
+      .key(function (d) {
+        return d[col_rel?.name];
+      })
+      .entries(newData)
+      .sort(function (b, a) {
+        return a.key - b.key;
+      })
+      .filter((col) => {
+        if (col.key !== " " && col.key !== "") {
+          return col;
+        }
+      })
+      .reverse();
+    const cols = group.map((col) => col.key);
+    console.log("cols", cols);
+    return {
+      group,
+      cols,
+    };
+  };
+
+  const resizeHandler = () => {
+    chart?.resize({
+      width: width,
+      height: height,
+    });
+  };
+</script>
