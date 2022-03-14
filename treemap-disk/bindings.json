@@ -1,0 +1,30 @@
+[
+  {
+    "field": "name",
+    "label": "name",
+    "requred": false,
+    "hint": "",
+    "default": "B"
+  },
+  {
+    "field": "value",
+    "label": "value",
+    "requred": true,
+    "hint": "",
+    "default": "A"
+  },
+  {
+    "field": "path",
+    "label": "path",
+    "requred": true,
+    "hint": "",
+    "default": "C"
+  },
+  {
+    "field": "children",
+    "label": "children",
+    "requred": false,
+    "hint": "",
+    "default": "D"
+  }
+]
