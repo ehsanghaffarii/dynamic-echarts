@@ -1,0 +1,152 @@
+[
+	{
+		"name": "Chart",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "Chart Background",
+						"field": "chart.background",
+						"type": "color-picker",
+						"default": "#FFFFFF",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "ColorPalette",
+						"field": "chart.color",
+						"type": "select-color-palette",
+						"default": "#73AF48",
+						"width": "100%",
+						"options": [
+							{
+								"display": "first",
+								"value": "#1D6996,#EDAD08,#73AF48,#94346E,#38A6A5,#E17C05,#5F4690,#0F8554,#6F4070,#CC503E,#994E95"
+							},
+							{
+								"display": "second",
+								"value": "#11A579,#CC503E,#3969AC,#F2B701,#7F3C8D,#80BA5A,#E68310,#CF1C90,#008695,#F97B72,#4B4B8F"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Title",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "Title",
+						"field": "title.text",
+						"type": "input-text",
+						"default": "",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Show ",
+						"field": "title.show",
+						"type": "switch",
+						"default": true,
+						"width": "50%"
+					},
+					{
+						"label": "Font Size",
+						"field": "title.fontSize",
+						"type": "input-number",
+						"default": "20",
+						"width": "50%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Margin Top",
+						"field": "title.top",
+						"type": "input-number",
+						"default": "3",
+						"width": "50%"
+					},
+					{
+						"label": "Margin Left",
+						"field": "title.left",
+						"type": "input-number",
+						"default": "30",
+						"width": "50%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "Color",
+						"field": "title.color",
+						"type": "color-picker",
+						"default": "#333333",
+						"width": "100%"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Subtext",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "subtext",
+						"field": "subtext.text",
+						"type": "input-text",
+						"default": "",
+						"width": "100%"
+					}
+				]
+			},
+			{
+				"components": [
+					{
+						"label": "subtext color",
+						"field": "subtext.color",
+						"type": "color-picker",
+						"default": "#333",
+						"width": "100%"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Grid",
+		"rows": [
+			{
+				"components": [
+					{
+						"label": "Top Grid",
+						"field": "grid.top",
+						"type": "input-number",
+						"default": "60",
+						"width": "50%"
+					},
+					{
+						"label": "Left Grid",
+						"field": "grid.left",
+						"type": "input-number",
+						"default": "120",
+						"width": "50%"
+					}
+				]
+			}
+		]
+	}
+]

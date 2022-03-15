@@ -1,0 +1,44 @@
+[
+  {
+    "field": "name",
+    "label": "name",
+    "requred": true,
+    "hint": "",
+    "default": "A"
+  },
+  {
+    "field": "color",
+    "label": "color",
+    "requred": true,
+    "hint": "",
+    "default": "B"
+  },
+  {
+    "field": "xValue",
+    "label": "xValue",
+    "requred": false,
+    "hint": "",
+    "default": "D"
+  },
+  {
+    "field": "yValue",
+    "label": "yValue",
+    "requred": true,
+    "hint": "",
+    "default": "E"
+  },
+  {
+    "field": "size",
+    "label": "size",
+    "requred": true,
+    "hint": "",
+    "default": "F"
+  },
+  {
+    "field": "time",
+    "label": "time",
+    "requred": true,
+    "hint": "",
+    "default": "C"
+  }
+]

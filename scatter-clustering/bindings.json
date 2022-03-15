@@ -1,0 +1,23 @@
+[
+  {
+    "field": "xValue",
+    "label": "xValue",
+    "requred": true,
+    "hint": "",
+    "default": "A"
+  },
+  {
+    "field": "yValue",
+    "label": "yValue",
+    "requred": true,
+    "hint": "",
+    "default": "B"
+  },
+  {
+    "field": "name",
+    "label": "name",
+    "requred": false,
+    "hint": "",
+    "default": "C"
+  }
+]

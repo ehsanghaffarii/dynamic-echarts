@@ -1,0 +1,51 @@
+[
+  {
+    "field": "source",
+    "label": "source",
+    "requred": true,
+    "hint": "",
+    "default": "H"
+  },
+  {
+    "field": "target",
+    "label": "target",
+    "requred": true,
+    "hint": "",
+    "default": "I"
+  },
+  {
+    "field": "value",
+    "label": "value",
+    "requred": false,
+    "hint": "",
+    "default": "F"
+  },
+  {
+    "field": "name",
+    "label": "name",
+    "requred": false,
+    "hint": "",
+    "default": "B"
+  },
+  {
+    "field": "size",
+    "label": "size",
+    "requred": false,
+    "hint": "",
+    "default": ""
+  },
+  {
+    "field": "category",
+    "label": "category",
+    "requred": false,
+    "hint": "",
+    "default": ""
+  },
+  {
+    "field": "categoryName",
+    "label": "category Name",
+    "requred": false,
+    "hint": "",
+    "default": ""
+  }
+]
